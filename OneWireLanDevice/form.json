@@ -1,0 +1,17 @@
+{
+     "elements":
+    [
+        { "name": "DataType", "type": "Select", "caption": "Device",
+            "options": 
+            [
+                { "label": "DS18B20", "value": 0 },
+		{ "label": "DS2438", "value": 1 }             
+            ]
+        },
+        { "name": "ROMId", "type": "ValidationTextBox", "caption": "ROMId" }
+    ],
+    "actions":
+    [
+        { "type": "Button", "label": "Search New ROMId", "onClick": "OneWireLan_GetRomID($id);" }
+    ]
+}

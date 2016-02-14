@@ -1,0 +1,14 @@
+{
+	"id": "{21C81179-662C-46E5-BB0E-F3E18EF75637}",
+	"name": "OneWireLanDevice",
+	"type": 3,
+	"vendor": "OneWire",
+	"aliases": 
+	[
+            "OneWireLan Device"
+	],
+	"parentRequirements": ["{C7DF8BCB-7CF7-4AD9-B636-5A3DEFE4E034}"],
+	"childRequirements": [],
+	"implemented": ["{B62FA047-5739-4518-A30B-2B12339713A2}"],
+	"prefix": "OneWireLan"
+}

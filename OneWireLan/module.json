@@ -1,0 +1,14 @@
+{
+	"id": "{926EAA81-B983-49EB-900A-673C6A81EE29}",
+	"name": "OneWireLan",
+	"type": 1,
+	"vendor": "",
+	"aliases": 
+	[
+            "OneWireLan"
+	],
+	"parentRequirements": [],
+	"childRequirements": ["{B62FA047-5739-4518-A30B-2B12339713A2}"],
+	"implemented": ["{C7DF8BCB-7CF7-4AD9-B636-5A3DEFE4E034}"],
+	"prefix": "OWLan"
+}
