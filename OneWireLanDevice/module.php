@@ -42,6 +42,13 @@
                     $this->UnregisterVariable("Vad");
                     $this->UnregisterVariable("Vsense");
                 break;
+                case 2: //DS18S20
+                    $this->RegisterVariableInteger("Health", "Health", "", 0);
+                    $this->RegisterVariableFloat("Temp", "Temperature", "~Temperature", 1);
+                    $this->UnregisterVariable("Vdd");
+                    $this->UnregisterVariable("Vad");
+                    $this->UnregisterVariable("Vsense");
+                break;
                 case 1: //DS2438
                     $this->RegisterVariableInteger("Health", "Health", "", 0);
                     $this->RegisterVariableFloat("Temp", "Temperature", "~Temperature", 1);
@@ -83,8 +90,22 @@
                                 }                            
                             }
                         break;
+                        case 2:                                       
+                            foreach ($Data->owd_DS18S20->$ROMId as $Key => $Value)
+                            {   
+                                switch ($Key) 
+                                {
+                                    case "Health":
+                                        $this->SetValue($this->GetIDForIdent("Health"), $Value);
+                                    break;
+                                    case "Temperature":
+                                        $this->SetValue($this->GetIDForIdent("Temp"), $Value);
+                                    break;
+                                }                            
+                            }
+                        break;
                         case 1:                                                
-                            foreach ($Data->owd_DS18B20->$ROMId as $Key => $Value)
+                            foreach ($Data->owd_DS2438->$ROMId as $Key => $Value)
                             {   
                                 switch ($Key) 
                                 {
@@ -139,6 +160,11 @@
             }    
             $ModuleID_r = IPS_GetInstanceListByModuleID("{21C81179-662C-46E5-BB0E-F3E18EF75637}");
             $resultat = $this->SendDataToParent(json_encode(Array("DataID" => "{C7DF8BCB-7CF7-4AD9-B636-5A3DEFE4E034}", "Buffer" => "NEW")));  
+            if ($resultat == "")
+            {
+                trigger_error("Interface is closed!", E_USER_WARNING);
+                return;
+            }
             $Data = json_decode($resultat);
             switch ($this->ReadPropertyInteger("DataType"))
             {
@@ -161,7 +187,30 @@
                             return;
                         }
                     }
-                    return "NO New ROMId for DS18B20 found!";
+                    echo "No New ROMId for DS18B20 found!";
+                    return; 
+                break;
+                case 2:
+                    foreach ($Data->DS18S20 as $Key => $Value)
+                    {       
+                        $ROMId = $Key;
+                        foreach ($ModuleID_r as $ID) 
+                        {
+                            if (IPS_GetProperty($ID, "ROMId") == $Key)
+                            {
+                                $ROMId = "";
+                            }
+                        }
+                        if ($ROMId != "")
+                        {
+                            IPS_SetProperty($this->InstanceID, "ROMId", $ROMId);
+                            IPS_ApplyChanges($this->InstanceID);
+                            echo "New ROMID: " . $ROMId . " found and saved! PLEASE CLOSE THE WINDOW!"; 
+                            return;
+                        }
+                    }
+                    echo "No New ROMId for DS18S20 found!";
+                    return; 
                 break;
                 case 1:
                     foreach ($Data->DS2438 as $Key => $Value)
@@ -182,7 +231,8 @@
                             return;
                         }
                     }
-                    return "NO New ROMId for DS2438 found!";
+                    echo "No New ROMId for DS2438 found!";
+                    return;
                 break;
             }           
         }

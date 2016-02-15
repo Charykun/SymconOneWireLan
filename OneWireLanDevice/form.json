@@ -5,6 +5,7 @@
             "options": 
             [
                 { "label": "DS18B20", "value": 0 },
+                { "label": "DS18S20", "value": 2 },
 		{ "label": "DS2438", "value": 1 }             
             ]
         },

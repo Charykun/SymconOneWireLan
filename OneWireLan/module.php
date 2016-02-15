@@ -121,6 +121,13 @@
                     $data["owd_DS18B20"][$ROMId]["Health"] = (int)$Sensor->Health;
                     $data["owd_DS18B20"][$ROMId]["Temperature"] = (float)$Sensor->Temperature;
                 }
+                foreach ($xml->owd_DS18S20 as $Sensor) 
+                {
+                    $ROMId = (string)$Sensor->ROMId;
+                    $this->ROMIds["DS18S20"][$ROMId] = "";
+                    $data["owd_DS18S20"][$ROMId]["Health"] = (int)$Sensor->Health;
+                    $data["owd_DS18S20"][$ROMId]["Temperature"] = (float)$Sensor->Temperature;
+                }
                 foreach ($xml->owd_DS2438 as $Sensor) 
                 {
                     $ROMId = (string)$Sensor->ROMId;
