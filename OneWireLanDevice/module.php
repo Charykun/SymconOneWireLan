@@ -76,55 +76,64 @@
                 {
                     switch ($this->ReadPropertyInteger("DataType")) 
                     {
-                        case 0:                                       
-                            foreach ($Data->owd_DS18B20->$ROMId as $Key => $Value)
-                            {   
-                                switch ($Key) 
-                                {
-                                    case "Health":
-                                        $this->SetValue($this->GetIDForIdent("Health"), $Value);
-                                    break;
-                                    case "Temperature":
-                                        $this->SetValue($this->GetIDForIdent("Temp"), $Value);
-                                    break;
-                                }                            
-                            }
+                        case 0:             
+                            if(isset($Data->owd_DS18B20->$ROMId))
+                            {
+                                foreach ($Data->owd_DS18B20->$ROMId as $Key => $Value)
+                                {   
+                                    switch ($Key) 
+                                    {
+                                        case "Health":
+                                            $this->SetValue($this->GetIDForIdent("Health"), $Value);
+                                        break;
+                                        case "Temperature":
+                                            $this->SetValue($this->GetIDForIdent("Temp"), $Value);
+                                        break;
+                                    }                            
+                                }
+                            }    
                         break;
-                        case 2:                                       
-                            foreach ($Data->owd_DS18S20->$ROMId as $Key => $Value)
-                            {   
-                                switch ($Key) 
-                                {
-                                    case "Health":
-                                        $this->SetValue($this->GetIDForIdent("Health"), $Value);
-                                    break;
-                                    case "Temperature":
-                                        $this->SetValue($this->GetIDForIdent("Temp"), $Value);
-                                    break;
-                                }                            
-                            }
+                        case 2:
+                            if(isset($Data->owd_DS18S20->$ROMId))
+                            {
+                                foreach ($Data->owd_DS18S20->$ROMId as $Key => $Value)
+                                {   
+                                    switch ($Key) 
+                                    {
+                                        case "Health":
+                                            $this->SetValue($this->GetIDForIdent("Health"), $Value);
+                                        break;
+                                        case "Temperature":
+                                            $this->SetValue($this->GetIDForIdent("Temp"), $Value);
+                                        break;
+                                    }                            
+                                }
+                            }    
                         break;
                         case 1:                                                
-                            foreach ($Data->owd_DS2438->$ROMId as $Key => $Value)
-                            {   
-                                switch ($Key) 
-                                {
-                                    case "Health":
-                                        $this->SetValue($this->GetIDForIdent("Health"), $Value);
-                                    break;
-                                    case "Temperature":
-                                        $this->SetValue($this->GetIDForIdent("Temp"), $Value);
-                                    break;
-                                    case "Vdd":
-                                        $this->SetValue($this->GetIDForIdent("Vdd"), $Value);
-                                    break;
-                                    case "Vad":
-                                        $this->SetValue($this->GetIDForIdent("Vad"), $Value);
-                                    break;
-                                    case "Vsense":
-                                        $this->SetValue($this->GetIDForIdent("Vsense"), $Value);
-                                    break;
-                                }                            
+                            if(isset($Data->owd_DS2438->$ROMId))
+                            {
+                                foreach ($Data->owd_DS2438->$ROMId as $Key => $Value)
+                                {   
+                                    switch ($Key) 
+                                    {
+                                        case "Health":
+                                            $this->SetValue($this->GetIDForIdent("Health"), $Value);
+                                        break;
+                                        case "Temperature":
+                                            $this->SetValue($this->GetIDForIdent("Temp"), $Value);
+                                        break;
+                                        case "Vdd":
+                                            $this->SetValue($this->GetIDForIdent("Vdd"), $Value);
+                                        break;
+                                        case "Vad":
+                                            $this->SetValue($this->GetIDForIdent("Vad"), $Value);
+                                        break;
+                                        case "Vsense":
+                                            $this->SetValue($this->GetIDForIdent("Vsense"), $Value);
+                                        break;
+                                    }
+                                }    
                             }
                         break;                 
                     }
